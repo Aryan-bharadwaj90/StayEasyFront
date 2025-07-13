@@ -5,7 +5,11 @@ import io from "socket.io-client";
 import axios from "axios";
 
 // ✅ Singleton socket
-const socket = io("http://localhost:5000");
+ const socket = io(import.meta.env.VITE_API_URL, {
+  transports: ["websocket"],
+  withCredentials: true,
+});
+
 
 function getConversationId(listingId, userId1, userId2) {
   return `${listingId}-${[userId1, userId2].sort().join("-")}`;
@@ -51,7 +55,7 @@ export default function ChatPage() {
     const fetchMessages = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/messages/${conversationId}`,
+          `${import.meta.env.VITE_API_URL}/api/messages/${conversationId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -83,7 +87,7 @@ export default function ChatPage() {
     };
 
     try {
-      const res = await axios.post("http://localhost:5000/api/messages", newMessage, {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/messages`, newMessage, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

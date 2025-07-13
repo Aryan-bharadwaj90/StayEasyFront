@@ -45,7 +45,7 @@ export default function CreateListingForm({ onCreated }) {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/listings/create",
+        `${import.meta.env.VITE_API_URL}/api/listings/create`,
         data,
         {
           headers: {

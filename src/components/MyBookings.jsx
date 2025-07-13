@@ -13,7 +13,7 @@ export default function Bookings() {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/bookings`, {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/bookings`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setBookings(res.data);
@@ -30,7 +30,7 @@ export default function Bookings() {
 
   const handleCancel = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/bookings/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/bookings/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setBookings((prev) => prev.filter((b) => b._id !== id));
