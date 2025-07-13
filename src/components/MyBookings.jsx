@@ -70,7 +70,7 @@ export default function Bookings() {
                 Total Price: <strong>₹{b.totalPrice}</strong>
               </p>
 
-              {/* ✅ Cancel Button if future booking */}
+              {/*  Cancel Button if future booking */}
               {new Date(b.checkIn) > new Date() && (
                 <button
                   onClick={() => handleCancel(b._id)}
