@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import io from "socket.io-client";
 import axios from "axios";
 
-// ✅ Singleton socket
+
  const socket = io(import.meta.env.VITE_API_URL, {
   transports: ["websocket"],
   withCredentials: true,
@@ -30,7 +30,7 @@ export default function ChatPage() {
     }, 100);
   };
 
-  // ✅ Real-time listener
+  
   useEffect(() => {
     if (!user || !conversationId) return;
 
@@ -50,7 +50,7 @@ export default function ChatPage() {
     };
   }, [conversationId, user]);
 
-  // ✅ Fetch chat history
+  
   useEffect(() => {
     const fetchMessages = async () => {
       try {
@@ -66,7 +66,7 @@ export default function ChatPage() {
         setMessages(unique);
         scrollToBottom();
       } catch (err) {
-        console.error("❌ Failed to fetch chat history:", err);
+        console.error(" Failed to fetch chat history:", err);
         alert("Error loading chat history");
       }
     };
@@ -74,7 +74,7 @@ export default function ChatPage() {
     if (conversationId) fetchMessages();
   }, [conversationId, token]);
 
-  // ✅ Handle send (save first, then emit)
+
   const handleSend = async (e) => {
     e.preventDefault();
     if (!text.trim()) return;
@@ -93,11 +93,11 @@ export default function ChatPage() {
 
       const savedMsg = res.data;
 
-      // ✅ Emit the actual saved message (with _id)
+      
       socket.emit("sendMessage", savedMsg);
       setText("");
     } catch (err) {
-      console.error("❌ Failed to send message:", err);
+      console.error("Failed to send message:", err);
     }
   };
 

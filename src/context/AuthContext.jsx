@@ -6,7 +6,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("token") || "");
 
-  // Load user from localStorage on first render
+  
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
     if (savedUser && savedUser !== "undefined") {
@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
     }
   }, [token]);
 
-  // Login and persist to localStorage
+  
   const login = (userData, token) => {
     if (!userData || typeof userData !== "object" || !token) {
       console.error("Invalid login data:", userData, token);
@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("user", JSON.stringify(userData));
   };
 
-  // Logout and clean up
+  
   const logout = () => {
     setUser(null);
     setToken("");
@@ -52,5 +52,5 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// Custom hook to access auth context
+
 export const useAuth = () => useContext(AuthContext);

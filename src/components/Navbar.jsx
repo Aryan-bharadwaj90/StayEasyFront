@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import SearchBar from "./SearchBar"; // ✅ Make sure this file exists
+import SearchBar from "./SearchBar";
 
 export default function Navbar() {
   const { user, logout } = useAuth();

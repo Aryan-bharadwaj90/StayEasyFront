@@ -8,7 +8,7 @@ export default function Confirmation() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const booking = location.state?.booking; // passed from Payment.jsx
+  const booking = location.state?.booking; 
   const [visible, setVisible] = useState(false);
   const [seconds, setSeconds] = useState(10);
 
@@ -17,12 +17,12 @@ export default function Confirmation() {
     confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
   }, []);
 
-  // countdown & redirect
+ 
   useEffect(() => {
     const timer = setInterval(() => {
       setSeconds((prev) => {
         if (prev <= 1) {
-          navigate("/my-bookings"); // redirect to my-bookings
+          navigate("/my-bookings");
           return 0;
         }
         return prev - 1;
