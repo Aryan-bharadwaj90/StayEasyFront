@@ -15,7 +15,7 @@ export default function Payment() {
   useEffect(() => {
     const fetchBooking = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/bookings/${id}`, {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/bookings/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setBooking(res.data);
@@ -30,14 +30,11 @@ export default function Payment() {
     fetchBooking();
   }, [id, token]);
 
-//   const handleMockPayment = () => {
-//     alert("✅ Mock payment successful!");
-//     navigate("/confirmation", { state: { booking } });
-//   };
+
 const handleMockPayment = async () => {
   try {
     await axios.patch(
-      `http://localhost:5000/api/bookings/${id}/mark-paid`,
+      `${import.meta.env.VITE_API_URL}/api/bookings/${id}/mark-paid`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );

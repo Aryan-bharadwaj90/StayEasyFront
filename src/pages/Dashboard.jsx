@@ -13,7 +13,7 @@ export default function Dashboard() {
     const fetchHostListings = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/listings/host/${user._id}`,
+          `${import.meta.env.VITE_API_URL}/api/listings/host/${user._id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -34,7 +34,7 @@ export default function Dashboard() {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this listing?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/listings/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/listings/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setListings((prev) => prev.filter((l) => l._id !== id));

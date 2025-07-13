@@ -11,7 +11,7 @@ export default function MessagesDashboard() {
     const fetchConvos = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/messages/conversations/${user._id}`,
+          `${import.meta.env.VITE_API_URL}/api/messages/conversations/${user._id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }

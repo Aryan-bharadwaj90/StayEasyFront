@@ -10,7 +10,7 @@ export default function Wishlist() {
 
   useEffect(() => {
     const fetch = async () => {
-      const res = await axios.get(`http://localhost:5000/api/wishlist`, {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/wishlist`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setItems(res.data);

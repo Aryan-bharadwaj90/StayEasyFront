@@ -11,12 +11,12 @@ export default function InboxPage() {
   useEffect(() => {
     const fetchInbox = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/messages/host/${user._id}`, {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/messages/host/${user._id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setConversations(res.data);
       } catch (err) {
-        console.error("❌ Failed to fetch inbox", err);
+        console.error("Failed to fetch inbox", err);
         alert("Error loading inbox");
       } finally {
         setLoading(false);

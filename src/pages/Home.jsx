@@ -22,7 +22,7 @@ export default function Home() {
   const fetchListings = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("http://localhost:5000/api/listings");
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/listings`);
       setListings(res.data);
     } catch (err) {
       console.error("Failed to fetch listings", err);
@@ -39,7 +39,7 @@ export default function Home() {
         if (val) params[key] = val;
       });
 
-      const res = await axios.get("http://localhost:5000/api/listings/search", {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/listings/search`, {
         params,
       });
       setListings(res.data);

@@ -15,7 +15,7 @@ export default function SearchResults() {
     setLoading(true);
     setError(null);
 
-    fetch(`http://localhost:5000/api/properties?location=${encodeURIComponent(locationQuery)}`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/properties?location=${encodeURIComponent(locationQuery)}`)
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch listings.");
         return res.json();

@@ -17,7 +17,7 @@ export default function EditListing() {
 
   useEffect(() => {
     const fetchListing = async () => {
-      const res = await axios.get(`http://localhost:5000/api/listings/${id}`);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/listings/${id}`);
       setData({
         title: res.data.title,
         description: res.data.description,
@@ -35,7 +35,7 @@ export default function EditListing() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/listings/${id}`, data, {
+      await axios.put(`${import.meta.env.VITE_API_URL}/${id}`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

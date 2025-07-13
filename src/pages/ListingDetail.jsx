@@ -62,7 +62,7 @@ const [selectedImg, setSelectedImg] = useState("");
   useEffect(() => {
     const fetchListing = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/listings/${id}`);
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/listings/${id}`);
         setListing(res.data);
       } catch (err) {
         console.error(err);
@@ -75,7 +75,7 @@ const [selectedImg, setSelectedImg] = useState("");
     const fetchWishlist = async () => {
       if (!user) return;
       try {
-        const res = await axios.get(`http://localhost:5000/api/wishlist`, {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/wishlist`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const found = res.data.find((w) => w.listing._id === id);
@@ -88,7 +88,7 @@ const [selectedImg, setSelectedImg] = useState("");
     const fetchReviews = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/reviews/${id}/reviews?page=${page}`
+          `${import.meta.env.VITE_API_URL}/api/reviews/${id}/reviews?page=${page}`
         );
         setReviews(res.data);
       } catch (err) {
@@ -106,7 +106,7 @@ const [selectedImg, setSelectedImg] = useState("");
   const toggleWishlist = async () => {
     try {
       await axios.post(
-        `http://localhost:5000/api/wishlist/${id}`,
+        `${import.meta.env.VITE_API_URL}/api/wishlist/${id}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -127,14 +127,14 @@ const [selectedImg, setSelectedImg] = useState("");
 
     try {
       const res = await axios.post(
-        `http://localhost:5000/api/bookings`,
+        `${import.meta.env.VITE_API_URL}/api/bookings`,
         { listingId: id, checkIn, checkOut, totalPrice },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      setBookingMsg(`✅ Booking successful! Booking ID: ${res.data._id}`);
+      setBookingMsg(` Booking successful! Booking ID: ${res.data._id}`);
     } catch (err) {
       console.error(err);
-      setBookingMsg("❌ Booking failed.");
+      setBookingMsg(" Booking failed.");
     } finally {
       setBookingLoading(false);
     }
@@ -144,32 +144,32 @@ const [selectedImg, setSelectedImg] = useState("");
     try {
       if (editingReviewId) {
         await axios.put(
-          `http://localhost:5000/api/reviews/${editingReviewId}`,
+          `${import.meta.env.VITE_API_URL}/api/reviews/${editingReviewId}`,
           { rating, comment },
           { headers: { Authorization: `Bearer ${token}` } }
         );
-        setReviewMsg("✅ Review updated!");
+        setReviewMsg(" Review updated!");
       } else {
         const res = await axios.post(
-          `http://localhost:5000/api/reviews/${id}/reviews`,
+          `${import.meta.env.VITE_API_URL}/api/reviews/${id}/reviews`,
           { rating, comment },
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setReviews((prev) => [res.data, ...prev]);
-        setReviewMsg("✅ Review submitted!");
+        setReviewMsg(" Review submitted!");
       }
       setComment("");
       setRating(5);
       setEditingReviewId(null);
     } catch (err) {
       console.error(err);
-      setReviewMsg("❌ Failed to submit review");
+      setReviewMsg(" Failed to submit review");
     }
   };
 
   const deleteReview = async (reviewId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/reviews/${reviewId}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/reviews/${reviewId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setReviews((prev) => prev.filter((r) => r._id !== reviewId));
