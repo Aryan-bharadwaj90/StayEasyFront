@@ -228,31 +228,65 @@ export default function ChatPage() {
     if (conversationId) fetchMessages();
   }, [conversationId, token]);
 
+  // const handleSend = async (e) => {
+  //   e.preventDefault();
+  //   if (!text.trim()) return;
+
+  //   const newMessage = {
+  //     conversationId,
+  //     text,
+  //     sender: user._id,
+  //     receiver: hostId,
+  //   };
+
+  //   try {
+  //     const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/messages`, newMessage, {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     });
+
+  //     const savedMsg = res.data;
+  //     socket.emit("sendMessage", savedMsg);
+  //     setMessages((prev) => [...prev, savedMsg]);
+  //     setText("");
+  //     scrollToBottom();
+  //   } catch (err) {
+  //     console.error("Failed to send message:", err);
+  //   }
+  // };
   const handleSend = async (e) => {
-    e.preventDefault();
-    if (!text.trim()) return;
+  e.preventDefault();
+  if (!text.trim()) return;
 
-    const newMessage = {
-      conversationId,
-      text,
-      sender: user._id,
-      receiver: hostId,
-    };
-
-    try {
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/messages`, newMessage, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      const savedMsg = res.data;
-      socket.emit("sendMessage", savedMsg);
-      setMessages((prev) => [...prev, savedMsg]);
-      setText("");
-      scrollToBottom();
-    } catch (err) {
-      console.error("Failed to send message:", err);
-    }
+  const newMessage = {
+    conversationId,
+    text,
+    sender: user._id,
+    receiver: hostId,
   };
+
+  try {
+    const res = await axios.post(
+      `${import.meta.env.VITE_API_URL}/api/messages`,
+      newMessage,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+
+    const savedMsg = res.data;
+
+    // ❌ DO NOT manually add to messages here
+    // setMessages((prev) => [...prev, savedMsg]);
+
+    // ✅ Only emit to socket — receiveMessage handler will take care
+    socket.emit("sendMessage", savedMsg);
+    setText("");
+    scrollToBottom();
+  } catch (err) {
+    console.error("Failed to send message:", err);
+  }
+};
+
 
   return (
     <div className="max-w-xl mx-auto mt-10 flex flex-col h-[80vh] border rounded shadow p-4">
