@@ -60,7 +60,6 @@ export default function Map({ center, draggable = false, onDragEnd }) {
     markerRef.current = marker;
 
     return () => {
-      // Clean up map & marker
       window.google.maps.event.clearInstanceListeners(marker);
       marker.setMap(null);
     };

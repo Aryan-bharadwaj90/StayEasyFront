@@ -9,7 +9,6 @@ import Dashboard from "./pages/Dashboard";
 import ListingDetail from "./pages/ListingDetail";
 import CreateListing from "./pages/CreateListing";
 import EditListing from "./pages/EditListing";
-//import Messages from "./pages/Messages";
 import ChatPage from "./components/ChatPage";
 import MyBookings from "./components/MyBookings";
 import Payment from "./pages/Payment";
@@ -22,7 +21,7 @@ import SearchResults from "./pages/SearchResults";
 
 import { useAuth } from "./context/AuthContext";
 
-// 🔒 wrapper for protected routes
+
 function ProtectedRoute({ children }) {
   const { user } = useAuth();
   if (!user) return <Navigate to="/login" replace />;
@@ -51,7 +50,7 @@ export default function App() {
             <Route path="/search" element={<SearchResults />} />
 
 
-            {/* 🔒 Protected Routes */}
+            
             <Route
               path="/dashboard"
               element={

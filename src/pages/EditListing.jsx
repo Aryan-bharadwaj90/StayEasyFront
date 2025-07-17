@@ -114,7 +114,7 @@ export default function EditListing() {
           onChange={handleChange}
         />
 
-        {/* Show Existing Images */}
+       
         <div>
           <label className="font-medium">Reorder/Delete Existing Images:</label>
           <div className="flex flex-wrap gap-2 mt-2">
@@ -128,7 +128,7 @@ export default function EditListing() {
                 >
                   ✕
                 </button>
-                {/* Move Up */}
+                
                 {idx > 0 && (
                   <button
                     type="button"
@@ -138,7 +138,7 @@ export default function EditListing() {
                     ↑
                   </button>
                 )}
-                {/* Move Down */}
+                
                 {idx < existingImages.length - 1 && (
                   <button
                     type="button"
@@ -153,7 +153,7 @@ export default function EditListing() {
           </div>
         </div>
 
-        {/* Upload New Images */}
+        
         <div>
           <label className="block font-medium">Add New Images</label>
           <input

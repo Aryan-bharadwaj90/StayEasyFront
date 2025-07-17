@@ -12,7 +12,7 @@ export default function Navbar() {
   return (
     <header className="bg-white shadow sticky top-0 z-30">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-        {/* Logo */}
+       
         <Link
           to="/"
           className="text-2xl font-bold text-rose-500 hover:text-rose-600"
@@ -20,12 +20,12 @@ export default function Navbar() {
           StayEasy
         </Link>
 
-        {/* Center Search Bar (only on md+) */}
+        
         <div className="hidden md:flex flex-grow justify-center">
-          <SearchBar /> {/* ✅ Replaced plain input with functional component */}
+          <SearchBar /> 
         </div>
 
-        {/* Right Menu */}
+        
         <div className="hidden md:flex items-center space-x-4 text-sm">
           <Link to="/" className="text-gray-700 hover:text-rose-500 transition">
             Home
@@ -67,13 +67,13 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* Mobile menu toggle */}
+       
         <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <X /> : <Menu />}
         </button>
       </div>
 
-      {/* Mobile dropdown menu */}
+     
       {menuOpen && (
         <div className="md:hidden px-4 pb-4 space-y-2 text-sm">
           <Link to="/" className="block text-gray-700 hover:text-rose-500">Home</Link>

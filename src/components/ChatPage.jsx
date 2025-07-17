@@ -21,7 +21,7 @@ export default function ChatPage() {
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState("");
   const messagesEndRef = useRef(null);
-  const connectedRef = useRef(false); // 👈 track socket connect once
+  const connectedRef = useRef(false);
 
   const conversationId =
     user && hostId && listingId
@@ -34,7 +34,7 @@ export default function ChatPage() {
     }, 100);
   };
 
-  // Connect & join socket
+  
   useEffect(() => {
     if (!user || !conversationId || connectedRef.current) return;
 
@@ -60,7 +60,7 @@ export default function ChatPage() {
     };
   }, [conversationId, user]);
 
-  // Fetch chat history once
+  
   useEffect(() => {
     const fetchMessages = async () => {
       try {
@@ -102,7 +102,6 @@ export default function ChatPage() {
 
       const savedMsg = res.data;
 
-      // Only emit; message will be appended via socket
       socket.emit("sendMessage", savedMsg);
       setText("");
     } catch (err) {

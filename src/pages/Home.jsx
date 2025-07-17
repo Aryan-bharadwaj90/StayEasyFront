@@ -6,7 +6,7 @@ export default function Home() {
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Filters
+  
   const [filters, setFilters] = useState({
     minPrice: "",
     maxPrice: "",
@@ -57,10 +57,10 @@ export default function Home() {
       <div className="bg-white p-4 rounded-2xl shadow-md mb-8 max-w-6xl mx-auto">
   <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
 
-    {/* Unified Filter Bar */}
+   
     <div className="flex w-full flex-col md:flex-row items-stretch border border-gray-300 rounded-full overflow-hidden divide-y md:divide-y-0 md:divide-x">
       
-      {/* Min Price */}
+      
       <div className="flex-1 px-4 py-2">
         <label className="text-xs text-gray-500">Min Price</label>
         <input
@@ -74,7 +74,7 @@ export default function Home() {
         />
       </div>
 
-      {/* Max Price */}
+      
       <div className="flex-1 px-4 py-2">
         <label className="text-xs text-gray-500">Max Price</label>
         <input
@@ -88,7 +88,7 @@ export default function Home() {
         />
       </div>
 
-      {/* Rating */}
+     
       <div className="flex-1 px-4 py-2">
         <label className="text-xs text-gray-500">Rating</label>
         <select
@@ -105,7 +105,7 @@ export default function Home() {
         </select>
       </div>
 
-      {/* Check-in + Check-out */}
+      
       <div className="flex flex-1 flex-col md:flex-row items-center justify-between px-4 py-2 gap-2 md:gap-4">
         <div className="flex-1">
           <label className="text-xs text-gray-500">Check-in</label>
@@ -132,7 +132,7 @@ export default function Home() {
       </div>
     </div>
 
-    {/* Search Button */}
+    
     <button
       onClick={fetchFilteredListings}
       className="mt-4 md:mt-0 bg-rose-500 text-white px-6 py-3 rounded-full hover:bg-rose-600 transition"
@@ -144,7 +144,7 @@ export default function Home() {
 
 
 
-      {/* 📦 Listings Display */}
+     
       {loading ? (
         <p>Loading...</p>
       ) : listings.length === 0 ? (
@@ -157,7 +157,7 @@ export default function Home() {
               key={listing._id}
               className="group block rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 bg-white"
             >
-              {/* Image */}
+              
               <div className="relative w-full h-60">
                 <img
                   src={listing.images?.[0] || "https://via.placeholder.com/400x300"}
@@ -166,7 +166,7 @@ export default function Home() {
                 />
               </div>
 
-              {/* Info */}
+             
               <div className="p-4 space-y-1">
                 <div className="text-sm text-gray-600 truncate">{listing.location}</div>
                 <h2 className="text-base font-semibold text-gray-900 truncate">

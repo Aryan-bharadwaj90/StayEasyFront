@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import dayjs from "dayjs";
 
 export default function Payment() {
-  const { id } = useParams(); // booking id
+  const { id } = useParams(); 
   const navigate = useNavigate();
   const { token } = useAuth();
 

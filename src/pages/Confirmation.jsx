@@ -60,7 +60,7 @@ export default function Confirmation() {
         Your Booking ID: <span className="font-mono">{booking._id}</span>
       </p>
 
-      {/* 📋 Booking Summary */}
+      
       <div className="bg-gray-50 p-3 rounded mb-4 text-left text-sm">
         <p>
           <span className="font-semibold">Listing:</span>{" "}
